@@ -28,6 +28,8 @@ oauth-client-credentials-spring illustrates how to use client credential grant t
 
 oauth-code-angular and oauth-code-react are two simple SPAs that use authorization code grant type. You can start them by:
 
+`npm install`
+
 `npm start`
 
 and reach them at:
