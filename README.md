@@ -36,4 +36,4 @@ and reach them at:
 
 `http://localhost:8086` (Angular)
 
-More details can be found [here.](sltang.wordpress.com/2018/03/26/spring-security-oauth2-and-jwt/) 
+More details can be found [here.](https://sltang.wordpress.com/2018/03/26/spring-security-oauth2-and-jwt/) 
