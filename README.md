@@ -34,7 +34,7 @@ oauth-code-angular and oauth-code-react are two simple SPAs that use authorizati
 
 and reach them at:
 
-`http://localhost:8085` (React)
+`http://localhost:8083` (React)
 
 `http://localhost:8086` (Angular)
 
