@@ -1,0 +1,16 @@
+server:
+  port: 8082
+  ssl:
+    cert: server_cert.pem
+    
+client:
+  ssl:
+    key: client_key.pem
+
+oauth:
+  server:
+    url: https://localhost:8443
+
+logging:
+ level:
+  org.springframework.security: DEBUG

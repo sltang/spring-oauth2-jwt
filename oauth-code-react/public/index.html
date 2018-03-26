@@ -10,35 +10,7 @@
 					src="https://code.jquery.com/jquery-3.3.1.min.js"
 					integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 					crossorigin="anonymous"></script>
-		<script type="text/javascript">
-			if (typeof(sessionStorage.accessToken) === 'undefined') {
-				let params = (new URL(document.location)).searchParams;
-				if (params.has('code')) {
-					let code = params.get('code');
-					var username = 'normal-app';
-					//to get access token, we authenticate with client id
-					var options = {
-						'grant_type':'authorization_code',
-						'code':code,
-				 		'redirect_uri':'http://localhost:8083/',
-						'client_id':username
-					}
-
-					$.ajax('https://localhost:8443/oauth/token', {
-						type:'POST',
-						async: false,
-						beforeSend: function(xhr) { 
-							xhr.setRequestHeader('Authorization', 'Basic ' + btoa(username + ':'));// blank password 
-						},
-						data: options, 
-					}).done(function(token) {
-						sessionStorage.setItem('accessToken', JSON.stringify(token));
-					}).fail(function(err) {
-						alert('Failed to get access token');
-					});
-				}
-			}	
-	</script>
+		<script src="./getToken.js"></script>
   </head>
   <body>
     <noscript>

@@ -17,7 +17,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [],
-      "scripts": [],
+      "scripts": ["getToken.js"],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

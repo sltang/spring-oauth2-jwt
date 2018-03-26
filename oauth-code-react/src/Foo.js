@@ -8,7 +8,7 @@ class Foo extends Component {
 	constructor(props) {
 		super(props);
 		let client = rest.wrap(mime);
-		this.state = {foosUrl:'http://localhost:8082/spring-security-oauth-resource/foos/', client:client, fooId:1, fooName:'Foo'};
+		this.state = {foosUrl:'http://localhost:8082/api/foos/', client:client, fooId:1, fooName:'Foo'};
 		this.handleGetFoo = this.handleGetFoo.bind(this);
 		this.getAccessToken = this.getAccessToken.bind(this);
 	}

@@ -1,0 +1,15 @@
+server:
+ port: 8088
+ 
+logging:
+ level:
+  org.springframework.security: DEBUG
+  
+oauth-server-client:
+ access-token-uri: https://localhost:8443/oauth/token
+ client-id: web-app
+ client-secret: secret
+ 
+resource:
+  server: 
+    url: http://localhost:8082
