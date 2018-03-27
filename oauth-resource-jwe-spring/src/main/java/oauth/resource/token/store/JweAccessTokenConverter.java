@@ -41,26 +41,51 @@ public class JweAccessTokenConverter extends JwtAccessTokenConverter {
 		return encryptJwt(token);
 	}
 	
+	/**
+	 * set private key to decrypt JWE by audience
+	 * @param decryptKey
+	 * @return 
+	 */
 	public JweAccessTokenConverter setDecryptKey(PrivateKey decryptKey) {
 		this.decryptKey = decryptKey;
 		return this;
 	}
 
+	/**
+	 * set public key to encrypt JWT by issuer
+	 * @param publicKey
+	 * @return
+	 */
 	public JweAccessTokenConverter setPublicKey(PublicKey publicKey) {
 		this.publicKey = publicKey;
 		return this;
 	}
 	
+	/**
+	 * set algorithm for CEK
+	 * @param jweAlgo
+	 * @return
+	 */
 	public JweAccessTokenConverter setJweAlgo(JWEAlgorithm jweAlgo) {
 		this.jweAlgo = jweAlgo;
 		return this;
 	}
 
+	/**
+	 * set JWE algorithm to encrypt CEK
+	 * @param encMethod
+	 * @return
+	 */
 	public JweAccessTokenConverter setEncMethod(EncryptionMethod encMethod) {
 		this.encMethod = encMethod;
 		return this;
 	}
 
+	/**
+	 * use nimbus-jose-jwt to decrypt encrypted token using private key set
+	 * @param jwtString
+	 * @return
+	 */
 	public String encryptJwt(String jwtString) {
 		try {
 			String[] parts = jwtString.split("\\.");
@@ -84,6 +109,11 @@ public class JweAccessTokenConverter extends JwtAccessTokenConverter {
 		}
 	}
 
+	/**
+	 * use nimbus-jose-jwt to encrypt signed token using public key
+	 * @param jweString
+	 * @return
+	 */
 	public String decryptJwe(String jweString) {	
 		try {
 			JWEObject jweObj = JWEObject.parse(jweString);

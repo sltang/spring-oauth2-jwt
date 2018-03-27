@@ -68,7 +68,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     	converter.setDecryptKey(keyProvider.getPrivateKey())
 		.setJweAlgo(JWEAlgorithm.RSA_OAEP_256)
 		.setEncMethod(EncryptionMethod.A256GCM)
-		.setSigningKey(keyProvider.getKey());
+		.setVerifierKey(keyProvider.getVerifierKey());
         converter.setJwtClaimsSetVerifier(jwtClaimsSetVerifier());
         return converter;
     }

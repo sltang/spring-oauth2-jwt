@@ -3,8 +3,11 @@ package oauth.authorization.jwe;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
+import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
+import java.security.interfaces.RSAPrivateKey;
 import java.security.spec.InvalidKeySpecException;
 import java.text.ParseException;
 
@@ -12,6 +15,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.jwt.crypto.sign.RsaSigner;
+import org.springframework.security.jwt.crypto.sign.Signer;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -32,12 +37,15 @@ public class EncryptJweTest {
 	private SecretKeyProvider keyProvider;
 	
 	@Test
-	public void testEncrypJwt() throws ParseException, CertificateException, IOException, InvalidKeySpecException, NoSuchAlgorithmException {
+	public void testEncrypJwt() throws CertificateException, IOException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
 		JweAccessTokenConverter converter = new JweAccessTokenConverter();
 		converter.setPublicKey(keyProvider.getClientPublicKey())
 		.setJweAlgo(JWEAlgorithm.RSA_OAEP_256)
-		.setEncMethod(EncryptionMethod.A256GCM)
-		.setSigningKey(keyProvider.getKey());
+		.setEncMethod(EncryptionMethod.A256GCM);
+		//.setSigningKey(keyProvider.getKey());
+		Signer signer = new RsaSigner(((RSAPrivateKey) keyProvider.getKey()));
+        converter.setSigner(signer);
+        converter.setVerifierKey(keyProvider.getPublicKey());
 		String jweString =	converter.encryptJwt(jwt);
 		assertNotNull("Payload not a signed JWT", jweString);
 	}

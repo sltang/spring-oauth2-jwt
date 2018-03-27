@@ -1,7 +1,12 @@
 package oauth.authorization;
 
 import java.io.IOException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 
 import javax.sql.DataSource;
@@ -10,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.jwt.crypto.sign.RsaSigner;
+import org.springframework.security.jwt.crypto.sign.Signer;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -38,15 +45,17 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private SecretKeyProvider keyProvider;
     
     @Bean
-    public JwtAccessTokenConverter accessTokenConverter() throws CertificateException, IOException {
+    public JwtAccessTokenConverter accessTokenConverter() throws UnrecoverableKeyException, CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException  {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        converter.setSigningKey(keyProvider.getKey());
+        Signer signer = new RsaSigner(((RSAPrivateKey) keyProvider.getKey()));
+        converter.setSigner(signer);
+        converter.setVerifierKey(keyProvider.getPublicKey());
         return converter;
     }
     
     @Bean
-    public TokenStore tokenStore() throws CertificateException, IOException {
-        return new JwtTokenStore(accessTokenConverter());
+    public TokenStore tokenStore() throws UnrecoverableKeyException, CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException  {
+		return new JwtTokenStore(accessTokenConverter());		
     }
     
     @Bean
@@ -55,7 +64,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     }
     
     @Bean
-    public DefaultTokenServices tokenServices() throws CertificateException, IOException {
+    public DefaultTokenServices tokenServices() throws CertificateException, IOException, InvalidKeySpecException, NoSuchAlgorithmException, UnrecoverableKeyException, KeyStoreException {
     	TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
     	tokenEnhancerChain.setTokenEnhancers(Arrays.asList(tokenEnhancer(), accessTokenConverter()));
         DefaultTokenServices tokenServices = new DefaultTokenServices();

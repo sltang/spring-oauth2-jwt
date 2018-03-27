@@ -60,7 +60,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() throws CertificateException, IOException {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        converter.setSigningKey(keyProvider.getKey());
+        converter.setVerifierKey(keyProvider.getVerifierKey());
         converter.setJwtClaimsSetVerifier(jwtClaimsSetVerifier());
         return converter;
     }
@@ -87,5 +87,5 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         defaultTokenServices.setTokenStore(tokenStore());
         return defaultTokenServices;
     }
-    
+
 }

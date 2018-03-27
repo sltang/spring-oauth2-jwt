@@ -1,7 +1,5 @@
 server:
   port: 8082
-  ssl:
-    cert: server_cert.pem
 
 oauth:
   server:

@@ -26,6 +26,7 @@ server:
     key-store: classpath:server.p12
     key-store-password: 1234
     cert: server_cert.pem
+    key: server_key.pem
     
 oauth:
   server:
