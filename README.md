@@ -12,7 +12,7 @@ This project contains a number of sample applications on Spring Security, OAuth2
 
 The Spring applications can be started with:
 
-`mvn spring:boot run`
+`mvn spring-boot:run`
 
 oauth-authorization-spring is a Spring authorization server that supports JWT. oauth-resource-spring is a Spring resource server that supports JWT. They should be run together.
 
