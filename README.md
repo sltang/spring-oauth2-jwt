@@ -24,7 +24,7 @@ ouath-openid-connect is a simple Spring application that shows how we can do OAu
 
 oauth-client-credentials-spring illustrates how to use client credential grant type for service-to-service type API calls. You can access it with `curl`:
 
-`curl -k http://localhost:8088/api/foos/1`
+`curl http://localhost:8088/api/foo/1`
 
 oauth-code-angular and oauth-code-react are two simple SPAs that use authorization code grant type. You can start them by:
 
