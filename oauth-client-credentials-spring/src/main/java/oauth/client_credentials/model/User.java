@@ -1,4 +1,4 @@
-package oauth.authorization.model;
+package oauth.client_credentials.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -20,9 +20,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "users")
-public class OAuthUser implements UserDetails {
+public class User implements UserDetails {
 	
-	private static final long serialVersionUID = -4134945175896159961L;
+	private static final long serialVersionUID = 1061674570879561427L;
 
 	@Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
@@ -32,9 +32,9 @@ public class OAuthUser implements UserDetails {
     private String password;
     
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name="oauth_user_roles") 
+    @CollectionTable(name="user_roles")
     private List<String> roles;
-
+    
     @Column(name="ACCOUNT_NON_EXPIRED")
     private boolean accountNonExpired;
     @Column(name="ACCOUNT_NON_LOCKED")
@@ -43,7 +43,7 @@ public class OAuthUser implements UserDetails {
     private boolean credentialsNonExpired;
     private boolean enabled;
     
-    public OAuthUser() {
+    public User() {
         this.accountNonExpired = true;
         this.accountNonLocked = true;
         this.credentialsNonExpired = true;

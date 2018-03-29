@@ -19,7 +19,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
-@Table(name = "users")//, schema="oauth")
+@Table(name = "users")
 public class OAuthUser implements UserDetails {
 	
 	private static final long serialVersionUID = -4134945175896159961L;
@@ -32,7 +32,7 @@ public class OAuthUser implements UserDetails {
     private String password;
     
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name="oauth_user_roles")//, schema = "oauth") 
+    @CollectionTable(name="oauth_user_roles")
     private List<String> roles;
 
     @Column(name="ACCOUNT_NON_EXPIRED")

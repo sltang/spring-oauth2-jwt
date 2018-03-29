@@ -22,17 +22,17 @@ The authorization server runs https on port 8443 and the resource server runs ht
 
 ouath-openid-connect is a simple Spring application that shows how we can do OAuth2 Login. It should also work with OpenID Connect without modifications. It can be accessed at `http://localhost:8080`.
 
-oauth-client-credentials-spring illustrates how to use client credential grant type for service-to-service type API calls. You can access it with `curl`:
+oauth-client-credentials-spring is an application that uses standard Spring login for authentication. The data from the backend, however, is obtained through a client credential grant type service-to-service API call. You can log in at (with user:password):
 
-`curl http://localhost:8088/api/foo/1`
+`http://localhost:8088/`
 
-oauth-code-angular and oauth-code-react are two simple SPAs that use authorization code grant type. You can start them by:
+oauth-code-angular and oauth-code-react are two simple SPAs that use the authorization code grant type. You can start them by:
 
 `npm install`
 
 `npm start`
 
-and reach them at:
+and access them at:
 
 `http://localhost:8083` (React)
 

@@ -42,15 +42,15 @@ public class SecretKeyProvider {
     }
 	
 	public String getPublicKey() throws CertificateException, IOException {
-		FileReader reader = new FileReader(new ClassPathResource(pubKey).getFile());
-		BufferedReader in = new BufferedReader(reader);		
-		String key = "", line = "";
-		while ((line = in.readLine())!=null) {
-			key += line + "\n";
+		try (
+			FileReader reader = new FileReader(new ClassPathResource(pubKey).getFile());
+			BufferedReader in = new BufferedReader(reader)) {	
+			String key = "", line = "";
+			while ((line = in.readLine())!=null) {
+				key += line + "\n";
+			}
+			return key;
 		}
-		reader.close();
-		in.close();
-		return key;
     }
 
 }

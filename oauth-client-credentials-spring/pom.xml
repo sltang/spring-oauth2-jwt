@@ -18,7 +18,11 @@
   </properties>
   
   <dependencies>
-     <dependency>
+    <dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-data-jpa</artifactId>
+	</dependency>
+    <dependency>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-web</artifactId>
 	</dependency>
@@ -27,6 +31,16 @@
 		<artifactId>spring-security-oauth2</artifactId>
 		<version>${oauth.version}</version>
 	</dependency>
+	<dependency>
+		<groupId>com.h2database</groupId>
+		<artifactId>h2</artifactId>
+		<scope>runtime</scope>
+	</dependency>
+	<dependency>
+    	<groupId>org.springframework.boot</groupId>
+    	<artifactId>spring-boot-devtools</artifactId>
+    	<optional>true</optional>
+	</dependency>
   </dependencies>
   
   <build>
@@ -34,7 +48,47 @@
         <plugin>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
+			<configuration>
+			    <addResources>true</addResources>
+			</configuration>
         </plugin>
+        
+        <plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<version>1.6</version>
+				<configuration>
+					<installDirectory>target</installDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<id>install node and npm</id>
+						<goals>
+							<goal>install-node-and-npm</goal>
+						</goals>
+						<configuration>
+							<nodeVersion>v8.11.0</nodeVersion>
+							<npmVersion>5.6.0</npmVersion>
+						</configuration>
+					</execution>
+					<execution>
+						<id>npm install</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>install</arguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>webpack build</id>
+						<goals>
+							<goal>webpack</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
     </plugins>
   </build>
+  
 </project>
