@@ -7,10 +7,11 @@ class Login extends React.Component {
 	
 	constructor(props) {
 		super(props);
-		this.state = {message:''}
+		this.state = {loggedIn:false, message:''}
 		this.handleLogin = this.handleLogin.bind(this)
 		this.handleLogout = this.handleLogout.bind(this)
 		this.clearMessage = this.clearMessage.bind(this)
+		this.handleKeyPress = this.handleKeyPress.bind(this)
 	}
 	
 	handleLogin(e) {		
@@ -27,9 +28,9 @@ class Login extends React.Component {
 		    return function() {
 		    	if (xhr.status == 200) { 
 		    		sessionStorage.loggedIn = true
-	            	o.setState({message:''})
+		    		o.setState({loggedIn:true, message:''})
 		    	} else {
-		    		o.setState({message:'Failed to log in. Check your username and password.'})
+		    		o.setState({message:'Login failed. Please check your username and password.'})
 		    	}	
 		    }
 		})(this);		
@@ -42,13 +43,11 @@ class Login extends React.Component {
 		xhr.send();
 		xhr.onreadystatechange = (function(o) {
 		    return function() {
-		    	if (xhr.status == 200) { 	 
-		    		sessionStorage.removeItem('loggedIn')
-		    		o.setState({message:''})
-		    	} else {
-		    		sessionStorage.removeItem('loggedIn')
-		    		o.setState({message:'Failed to log out.'})		    				    		
-		    	}	
+		    	if (xhr.status != 200) { 	 
+					alert('Logout failed.');		    		
+		    	} 
+				sessionStorage.removeItem('loggedIn');
+				o.setState({loggedIn:false, message:''})					
 		    }
 		})(this);
 	}
@@ -56,6 +55,13 @@ class Login extends React.Component {
 	clearMessage(e) {
 		e.preventDefault();
 		this.setState({message:''});
+	}
+
+	handleKeyPress(e) {
+		if (e.key == 'Enter') {
+			e.preventDefault();
+			this.handleLogin(e);			
+		}
 	}
 	
 	render() {
@@ -69,10 +75,11 @@ class Login extends React.Component {
 		} else {
 			return (
 				<div className="login-container">									
-				 	<input type="text" name="username" placeholder="username" onFocus={this.clearMessage} ref="username"/>
-		            <input type="password" name="password" placeholder="password" ref="password"/>
+				 	<input type="text" name="username" placeholder="username" onFocus={this.clearMessage} onKeyPress={this.handleKeyPress} ref="username"/>
+		            <input type="password" name="password" placeholder="password" ref="password" onKeyPress={this.handleKeyPress} />
 		            <button className="btn btn-primary" onClick={this.handleLogin}>Login</button>
-		            <div className="alert alert-warning" style={(this.state.message) ? {} : {'display':'none'}} >
+		            <p></p>
+		            <div className="alert alert-danger" style={(this.state.message) ? {} : {'display':'none'}} >
 						{this.state.message}
 					</div>	
 		        </div>

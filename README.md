@@ -22,7 +22,7 @@ The authorization server runs https on port 8443 and the resource server runs ht
 
 ouath-openid-connect is a simple Spring application that shows how we can do OAuth2 Login. It should also work with OpenID Connect without modifications. It can be accessed at `http://localhost:8080`.
 
-oauth-client-credentials-spring is an application that uses standard Spring login for authentication. The data from the backend, however, is obtained through a client credential grant type service-to-service API call. You can log in at (with user:password):
+oauth-client-credentials-spring is an application that uses standard Spring login for authentication. The data from the backend, however, is obtained through a client credentials grant type service-to-service API call. You can log in (with user:password) at:
 
 `http://localhost:8088/`
 
