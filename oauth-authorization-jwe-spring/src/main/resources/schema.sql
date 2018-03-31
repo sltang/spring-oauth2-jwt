@@ -8,7 +8,7 @@ create table users (
 	username varchar(255), 
 	primary key (id));
 	
-create sequence oauth_users_sequence start with 1 increment by 1;
+create sequence oauth_users_sequence start with 2 increment by 1;
 
 create table oauth_user_roles (
    oauth_user_id bigint not null, 

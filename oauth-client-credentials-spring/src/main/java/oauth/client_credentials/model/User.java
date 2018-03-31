@@ -12,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -25,7 +26,8 @@ public class User implements UserDetails {
 	private static final long serialVersionUID = 1061674570879561427L;
 
 	@Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="UserSeq")
+	@SequenceGenerator(name="UserSeq",sequenceName="users_sequence", allocationSize=1) 
     private Long id;
 
     private String username;
@@ -71,6 +73,10 @@ public class User implements UserDetails {
 
 	public String getUsername() {
 		return this.username;
+	}
+	
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public boolean isAccountNonExpired() {

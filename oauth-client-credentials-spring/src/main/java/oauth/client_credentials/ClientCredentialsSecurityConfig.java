@@ -38,17 +38,13 @@ public class ClientCredentialsSecurityConfig  extends WebSecurityConfigurerAdapt
 	        	.logoutSuccessUrl("/")
 	        	.invalidateHttpSession(true)
         	.and()
-        		.headers().frameOptions().disable()
-        	.and()
             	.authorizeRequests()
-            	.antMatchers("/",  "/*.css", "/bundle.js").permitAll()
+            	.antMatchers("/", "/*.css", "/bundle.js").permitAll()
                 .anyRequest().authenticated()
             .and()
             	.csrf().disable()   
             .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/")
-                .permitAll();
+                .loginPage("/");                ;
     }
 
 }

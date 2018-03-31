@@ -20,13 +20,13 @@ class Login extends React.Component {
 		let password = ReactDOM.findDOMNode(this.refs["password"]).value.trim()
 		
 		var xhr = new XMLHttpRequest();
-		xhr.open("POST", "/login", true);
+		xhr.open("POST", "/", true);
 		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xhr.send("username="+username+"&password="+password);
 		
 		xhr.onreadystatechange = (function(o) {
 		    return function() {
-		    	if (xhr.status == 200) { 
+		    	if (xhr.responseURL.indexOf('/?error') == -1) { 
 		    		sessionStorage.loggedIn = true
 		    		o.setState({loggedIn:true, message:''})
 		    	} else {

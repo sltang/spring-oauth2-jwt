@@ -19,7 +19,6 @@ class Foo extends React.Component {
 			method: 'GET',
 			path: this.state.foosUrl + this.state.fooId
 		}).then((response) => {
-				console.log(response);
 				if (response.status.code == 200) {
 					this.setState({fooId:response.entity.id, fooName:response.entity.name});
 				} else {
