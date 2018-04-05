@@ -82,8 +82,8 @@ public class JweAccessTokenConverter extends JwtAccessTokenConverter {
 	}
 
 	/**
-	 * use nimbus-jose-jwt to decrypt encrypted token using private key set
-	 * @param jwtString
+	 * use nimbus-jose-jwt to encrypt signed token using public key
+	 * @param jweString
 	 * @return
 	 */
 	public String encryptJwt(String jwtString) {
@@ -110,8 +110,8 @@ public class JweAccessTokenConverter extends JwtAccessTokenConverter {
 	}
 
 	/**
-	 * use nimbus-jose-jwt to encrypt signed token using public key
-	 * @param jweString
+	 * use nimbus-jose-jwt to decrypt encrypted token using private key
+	 * @param jwtString
 	 * @return
 	 */
 	public String decryptJwe(String jweString) {	

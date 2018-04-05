@@ -75,8 +75,8 @@ class Login extends React.Component {
 		} else {
 			return (
 				<div className="login-container">									
-				 	<input type="text" name="username" placeholder="username" onFocus={this.clearMessage} onKeyPress={this.handleKeyPress} ref="username"/>
-		            <input type="password" name="password" placeholder="password" ref="password" onKeyPress={this.handleKeyPress} />
+				 	<input type="text" placeholder="username" onFocus={this.clearMessage} onKeyPress={this.handleKeyPress} ref="username"/>
+		            <input type="password" placeholder="password" ref="password" onKeyPress={this.handleKeyPress} />
 		            <button className="btn btn-primary" onClick={this.handleLogin}>Login</button>
 		            <p></p>
 		            <div className="alert alert-danger" style={(this.state.message) ? {} : {'display':'none'}} >
