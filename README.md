@@ -16,7 +16,7 @@ The Spring applications can be started with:
 
 oauth-authorization-spring is a Spring authorization server that supports JWT. oauth-resource-spring is a Spring resource server that supports JWT. They should be run together.
 
-oauth-authorization-jwe-spring is a Spring authorization server that supports JWE. oauth-resource-spring is a Spring resource server that supports JWE. They should be run together. Spring does not officially support JWE yet. These projects provide a simple addition that makes JWE work. Under the hood, we use connect2id's nimbus-jose-jwt for JWT encryption.
+oauth-authorization-jwe-spring is a Spring authorization server that supports JWE. oauth-resource-jwe-spring is a Spring resource server that supports JWE. They should be run together. Spring does not officially support JWE yet. These projects provide a simple addition that makes JWE work. Under the hood, we use connect2id's nimbus-jose-jwt for JWT encryption.
 
 The authorization server runs https on port 8443 and the resource server runs http on 8082. The authorization server should be started before the resource server.
 
