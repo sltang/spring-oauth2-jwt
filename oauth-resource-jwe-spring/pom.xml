@@ -16,7 +16,7 @@
 	<java.version>1.8</java.version>
 	<oauth.version>2.3.0.RELEASE</oauth.version>
  	<jwt.version>1.0.9.RELEASE</jwt.version>
-    <jose.version>5.7</jose.version>
+    <jose.version>7.9</jose.version>
   </properties>
   
   <dependencies>
