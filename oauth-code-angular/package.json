@@ -25,7 +25,7 @@
     "ng2-cookies": ">=1.0.12"
   },
   "devDependencies": {
-    "@angular/cli": "1.0.1",
+    "@angular/cli": "1.7.4",
     "@angular/compiler-cli": "^4.0.0",
     "@types/node": "~6.0.60",
     "codelyzer": "~2.0.0",
